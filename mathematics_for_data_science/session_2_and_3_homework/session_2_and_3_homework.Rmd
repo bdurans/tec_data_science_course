@@ -1,19 +1,81 @@
 ---
-title: "session_2_and_3_homework"
 output: html_notebook
-author: "Brian Duran TEST"
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+### Brian Durán
+![](../logo_ciencia_de_datos.png)
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+<center> <h1>Tarea: Sesión 2 y 3</h1> </center>
 
+</br>
+
+#### I Parte
+
+1. Ejecute las siguientes instrucciones para practicar el uso algunos comandos de la
+matemática de R.
+    a. pi*2^3-sqrt(4)
+    b. abs(12-17*2/3-9)
+    c. factorial(4)
+    d. log(2,10)
+    e. log(2)
+    f. exp(0.069314725)
+    
 ```{r}
-plot(cars)
+pi*2^3-sqrt(4)
+abs(12-17*2/3-9)
+factorial(4)
+log(2,10)
+log(2)
+exp(0.069314725)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+</br>
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+2. Calcule en R el valor de _**x**_, sabiendo que:
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```
+x = 1 + y / 1 + 2z^2
+y = 10
+z = pi
+```
+
+```{r}
+y <- 10
+z <- pi
+x <- (1 + y) / (1 + 2*z^2)
+x
+```
+
+</br>
+
+3. Calcule en R el valor de _**z**_, sabiendo que
+
+```
+z = sqrt(x^2 + y^2)
+x = -10
+y = pi
+```
+
+```{r}
+x <- -10
+y <- pi
+z <- sqrt(x^2+y^2)
+z
+```
+
+
+
+4. Dado _**x**_ = (3,−5, 31, −1,−9, 10,0, 18) y _**y**_ = (1, 1, −3, 1,−99, −10, 10, −7),
+realice lo siguiente:
+
+a. Introduzca _**x**_ e _**y**_ como vectores de R
+b. Calcule el ángulo entre los vectores _**x**_ e _**y**_
+c. Extraiga las entradas 2 y 7 del vector _**x**_
+d. Extraigas de _**y**_ todas las entradas de dicho vector, excepto las posiciones 2 y 7
+e. Escriba un comando en R para extraer las entradas menores que -3 o mayores que 10.
+f. Escriba un comando en R para extraer las entradas mayores que 0 y que sean número pares.
+
+
+
+
+
