@@ -200,6 +200,13 @@ col        | Define el color de un elemento.
 bty        | Opción que dibuja una caja alrededor del gráfico. Si se define como  **'n'** no se dibujara ninguna caja.
 
 
+<!-- ----------------------------------------------------------- -->
+<!--
+Esta sección es solo para agregar unos estilos y elementos 
+personalizados al html generado por rStudio  
+-->
+<!-- ----------------------------------------------------------- -->
+
 &nbsp;
 
 <hr />
