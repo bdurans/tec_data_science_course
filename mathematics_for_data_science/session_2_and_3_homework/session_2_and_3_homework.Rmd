@@ -202,7 +202,7 @@ bty        | Opción que dibuja una caja alrededor del gráfico. Si se define co
 
 <!-- ----------------------------------------------------------- -->
 <!--
-Esta sección es solo para agregar unos estilos y elementos 
+Esta sección es solo para agregar estilos y elementos 
 personalizados al html generado por rStudio  
 -->
 <!-- ----------------------------------------------------------- -->
