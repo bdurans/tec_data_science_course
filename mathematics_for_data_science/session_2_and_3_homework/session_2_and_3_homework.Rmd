@@ -207,7 +207,7 @@ xlab, ylab | La opción **xlab** agrega un título en el eje x, mientras que **y
 lwd        | Define el ancho de la línea en el elemento que se use, e.g. gráfico, puntos, flechas.
 lty        | Define el tipo de línea que se va a usar para dibujar cierto elemento.
 col        | Define el color de un elemento.
-bty        | Opción que dibuja una caja alrededor del gráfico. Si se define como  **'n'** no se dibujara ninguna caja.
+bty        | Opción que permite personalizar la caja alrededor del gráfico. Si se define como  **'n'** no se dibujara ninguna caja.
 
 
 <!-- ----------------------------------------------------------- -->
