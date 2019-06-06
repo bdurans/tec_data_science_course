@@ -1,19 +1,250 @@
 ---
-title: "session_2_and_3_homework"
 output: html_notebook
-author: "Brian Duran"
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-
-```{r}
-plot(cars)
+```{css, echo = FALSE}
+.indent {
+ margin-left: 30px;
+}
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+### Brian Durán
+![](../logo_ciencia_de_datos.png)
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+<h1><center> Tarea: Sesión 2 y 3 </center></h1>
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+</br>
+
+#### I Parte
+
+</br>
+
+1. Ejecute las siguientes instrucciones para practicar el uso algunos comandos de la
+matemática de R.
+    a. pi*2^3-sqrt(4)
+    b. abs(12-17*2/3-9)
+    c. factorial(4)
+    d. log(2,10)
+    e. log(2)
+    f. exp(0.069314725)
+    
+```{r, class.source="indent", class.output="indent"}
+pi*2^3-sqrt(4)
+abs(12-17*2/3-9)
+factorial(4)
+log(2,10)
+log(2)
+exp(0.069314725)
+```
+
+</br>
+
+2. Calcule en R el valor de _**x**_, sabiendo que:
+
+    ```
+    x = 1 + y / 1 + 2z^2
+    y = 10
+    z = pi
+    ```
+
+```{r, class.source="indent", class.output="indent"}
+y <- 10
+z <- pi
+x <- (1 + y) / (1 + 2*z^2)
+x
+```
+
+</br>
+
+3. Calcule en R el valor de _**z**_, sabiendo que
+
+    ```
+    z = sqrt(x^2 + y^2)
+    x = -10
+    y = pi
+    ```
+
+```{r, class.source="indent", class.output="indent"}
+x <- -10
+y <- pi
+z <- sqrt(x^2+y^2)
+z
+```
+
+</br>
+
+4. Dado _**x**_ = (3,−5, 31, −1,−9, 10,0, 18) y _**y**_ = (1, 1, −3, 1,−99, −10, 10, −7),
+realice lo siguiente:
+
+</br>
+
+a. Introduzca _**x**_ e _**y**_ como vectores de R
+
+```{r, class.source="indent", class.output="indent"}
+x <- c(3, −5, 31, −1, −9, 10, 0, 18)
+y <- c(1, 1, −3, 1, −99, −10, 10, −7)
+```
+
+</br>
+
+b. Calcule el ángulo entre los vectores _**x**_ e _**y**_
+
+```{r, class.source="indent", class.output="indent"}
+x <- c(3, −5, 31, −1, −9, 10, 0, 18)
+y <- c(1, 1, −3, 1, −99, −10, 10, −7)
+
+norma_x <- sqrt(sum(x*x))
+
+norma_y <- sqrt(sum(y*y))
+
+producto_punto_x_y = (sum(x*y))
+
+phi =  acos(producto_punto_x_y/(norma_x*norma_y))
+
+phi
+```
+
+</br>
+
+c. Extraiga las entradas 2 y 7 del vector _**x**_
+
+```{r, class.source="indent", class.output="indent"}
+x <- c(3, −5, 31, −1, −9, 10, 0, 18)
+x[c(2, 7)]
+```
+
+</br>
+
+d. Extraigas de _**y**_ todas las entradas de dicho vector, excepto las posiciones 2 y 7
+
+```{r, class.source="indent", class.output="indent"}
+y <- c(1, 1, −3, 1, −99, −10, 10, −7)
+y[-c(2, 7)]
+```
+
+</br>
+
+e. Escriba un comando en R para extraer las entradas menores que -3 o mayores que 10.
+```{r, class.source="indent", class.output="indent"}
+x <- c(3, −5, 31, −1, −9, 10, 0, 18)
+y <- c(1, 1, −3, 1, −99, −10, 10, −7)
+
+x[x < -3 | x > 10]
+
+y[y < -3 | y > 10]
+```
+
+</br>
+
+f. Escriba un comando en R para extraer las entradas mayores que 0 y que sean número pares.
+
+```{r, class.source="indent", class.output="indent"}
+x <- c(3, −5, 31, −1, −9, 10, 0, 18)
+y <- c(1, 1, −3, 1, −99, −10, 10, −7)
+
+x[x > 0 & (x %% 2 == 0)]
+y[y > 0 & (y %% 2 == 0)]
+```
+
+</br>
+
+#### II Parte
+
+1. Ejecute el siguiente código:
+
+```{r, class.source="indent", class.output="indent"}
+v <- c(1,3)
+print(v)
+```
+
+```{r}
+plot(3,1, xlim=c(0,5), ylim=c(0,5), xlab="x", ylab="y", lwd=3, col='red', bty='n')
+arrows(0,0,3,1,col='red')
+```
+
+
+2. Ejecute el siguiente código y explique según lo estudiado en clase: Cuáles fueron los dos vectores base para diseñar la figura?, ¿Qué significa el vector de color verde?
+
+```{r}
+plot(3,1, xlim=c(0,5), ylim=c(0,5), xlab="x", ylab="y", lwd=3, col='red', bty='n')
+arrows(0,0,3,1,col='red')
+points(1,3,lwd=3,col='blue')
+arrows(0,0,1,3,col='blue')
+points(4,4,lwd=3,col='green')
+arrows(0,0,4,4,col='green')
+arrows(1,3,4,4,col='red',lty=3)
+arrows(3,1,4,4,col='blue',lty=3)
+```
+
+Respuestas:
+
+Cuáles fueron los dos vectores base para diseñar la figura? </br>
+Los vectores fueron (3, 1) y (1, 3)
+
+¿Qué significa el vector de color verde? </br>
+El vector de color verde representa la suma de los vectores (3, 1) y (1, 3)
+
+</br>
+
+Realice una modificacion al Codigo, de manera que en lugar de ilustrar la suma de vectores, se ilustre la resta  de los vectores base.
+
+```{r}
+plot(3,1, xlim=c(0,5), ylim=c(0,5), xlab="x", ylab="y", lwd=3, col='red', bty='n')
+arrows(0,0,3,1,col='red')
+points(1,3,lwd=3,col='blue')
+arrows(0,0,1,3,col='blue')
+points(3,1,lwd=3,col='green')
+points(1,3,lwd=3,col='green')
+arrows(1,3,3,1,col='green')
+```
+
+Además, complete la siguiente tabla, explicando la función de ciertas instrucciones del comando plot y arrows.
+
+Comando    | Explicación
+---------- | -------------
+xlim, ylim | Definen el rango del eje x y el eje y en el gráfico.
+xlab, ylab | La opción **xlab** agrega un título en el eje x, mientras que **ylab** agrega uno en el eje y.
+lwd        | Define el ancho de la línea en el elemento que se use, e.g. gráfico, puntos, flechas.
+lty        | Define el tipo de línea que se va a usar para dibujar cierto elemento.
+col        | Define el color de un elemento.
+bty        | Opción que permite personalizar la caja alrededor del gráfico. Si se define como  **'n'** no se dibujara ninguna caja.
+
+
+<!-- ----------------------------------------------------------- -->
+<!--
+Esta sección es solo para agregar estilos y elementos 
+personalizados al html generado por rStudio  
+-->
+<!-- ----------------------------------------------------------- -->
+
+&nbsp;
+
+<hr />
+<p style="text-align: center;">Autor <a href="https://github.com/bdurans">Brian Duran</a></p>
+<p style="text-align: center;"><span style="color: #808080;"><em>bduran0393@gmail.com</em></span></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://github.com/bdurans/tec_data_science_course/tree/master/mathematics_for_data_science/session_2_and_3_homework" class="fa fa-github"></a>
+</p>
+
+<a href="https://github.com/bdurans/tec_data_science_course/tree/master/mathematics_for_data_science/session_2_and_3_homework" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+<script>
+$(document).ready(function () {
+    $('pre.r').addClass('indent');
+});
+</script>
+
+<style>
+.indent {
+ margin-left: 30px;
+}
+</style>
+
+&nbsp;
+
+
