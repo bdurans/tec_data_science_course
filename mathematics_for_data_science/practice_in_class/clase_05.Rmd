@@ -1,0 +1,10 @@
+---
+title: "Clase 05"
+output: html_notebook
+---
+
+
+```{r}
+plot(cars)
+```
+
