@@ -5,6 +5,83 @@ output: html_notebook
 
 
 ```{r}
-plot(cars)
+library(pracma)
+library(mosaic)
+library(MASS)
 ```
 
+```{r}
+u <- c(2, 4, -5)
+v <- c(-3, -2, 1)
+pracma::cross(u,v)
+```
+
+Ej: Determine el area del triángulo con vértices P=(5,4,5), Q=(4,10,6) y R=(1,8,7)
+
+```{r}
+p <- c(5,4,5); q <- c(4,10,6); r <- c(1,8,7)
+
+pq <- q-p
+pr <- r-p
+pcruz <- as.matrix(pracma::cross(pq, pr))
+area <- norm(pcruz, type = "2")
+# área de todo el paralelogramo
+area
+# área del triángulo
+area / 2
+
+# Usando la función Norm del paquete pracma
+area2 <- Norm(pracma::cross(pq,pr))/2
+area2
+```
+
+# Proyecciones: 
+
+```{r}
+u <- c(2,3,1)
+v <- c(1,2,-6)
+
+project(u,v, type="coef")
+project(u,v, type="coef") * v
+proy <- project(u,v)
+# from MASS package
+fractions(proy)
+```
+
+# Matrices
+
+Un fabricante produce 4 artículos, su demanda esta dada por la siguiente matriz
+
+```{r}
+productos <- matrix(c(30,20,40,10,25,32,38,7,33,20,45,5), nrow=3, ncol=4, byrow=TRUE)
+productos
+
+```
+
+Los precios por unidad que recibe el fabricante por dichos artículos, considerante 3 posibilidades sería (precio en $)
+
+```{r}
+precios <- matrix(c(20,18,25,15,17,15,18,16,20,40,38,33), nrow=4, ncol=3, byrow=TRUE)
+precios
+```
+
+
+```{r}
+productos <- matrix(c(30,20,40,10,25,32,38,7,33,20,45,5), nrow=3, ncol=4, byrow=TRUE)
+precios <- matrix(c(20,18,25,15,17,15,18,16,20,40,38,33), 4, 3, byrow=T)
+m = productos %*% precios
+m
+
+m[2,3]
+m[2,]
+m[,3]
+```
+
+# Sistema de m ecuaciones lineales con n incógnitas
+
+```{r}
+s <- matrix(c(2, 4, 6, 18, 4, 5, 6, 24, 3, 1, -2, 4), 3, 4, byrow=T)
+s
+# 
+rref(s)
+```
