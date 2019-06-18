@@ -1,0 +1,355 @@
+---
+output: html_notebook
+---
+
+```{css, echo = FALSE}
+.indent {
+ margin-left: 30px;
+}
+```
+```{r, echo = FALSE, message = FALSE}
+library(pracma)
+library(mosaic)
+library(MASS)
+```
+
+### Brian Durán
+![](../logo_ciencia_de_datos.png)
+
+<h1><center> Tarea: Sesión 2 y 3 </center></h1>
+
+</br>
+
+#### I Parte
+
+</br>
+
+1. Sea $P=(2,3)$, $Q=(5,2)$, $R=(2,-5)$ y $S=(1,-2)$. Calcule $proy_{\vec{PQ}}\vec{RS}$.
+
+  $\vec{PQ}$
+
+```{r, class.source="indent", class.output="indent"}
+q <- c(5,2)
+p <- c(2,3)
+pq <- q - p
+pq
+
+```
+
+  $\vec{RS}$
+
+```{r, class.source="indent", class.output="indent"}
+r <- c(2,-5)
+s <- c(1,-2)
+rs <- s - r
+rs
+
+```
+
+</br>
+
+$proy_{\vec{PQ}}\vec{RS}$
+
+```{r, class.source="indent", class.output="indent"}
+r <- c(2,-5)
+s <- c(1,-2)
+rs <- s - r
+
+q <- c(5,2)
+p <- c(2,3)
+pq <- q - p
+
+proy <- project(rs, pq)
+
+fractions(proy)
+
+```
+
+</br>
+
+2. Sea $u = (-2,1,6)$ y $v = (2,4,5)$, comprueba que el vector $w$ dado por $w = u - \frac{u \cdot v}{\|v\|^2} v$
+Es un vector ortogonal con $v$
+
+Calculamos:
+
+$u \cdot v$
+
+```{r, class.source="indent", class.output="indent"}
+u <- c(-2,1,6)
+v <- c(2,4,5)
+sum(u*v)
+```
+
+${\|v\|^2}$
+
+```{r, class.source="indent", class.output="indent"}
+v <- c(2,4,5)
+norm(v, type="2")^2
+```
+
+$w = u - \frac{u \cdot v}{\|v\|^2} v$
+
+
+```{r, class.source="indent", class.output="indent"}
+v <- c(2,4,5)
+v2 <- norm(v, type="2")^2
+
+u <- c(-2,1,6)
+v <- c(2,4,5)
+prod_punto_u_v = sum(u*v)
+
+w = u - ((prod_punto_u_v / v2) * v)
+
+w = fractions(w)
+
+sum(w*v)
+
+subspace(as.matrix(w),as.matrix(v))
+
+180*subspace(as.matrix(w),as.matrix(v))/pi
+
+```
+
+$W _{\bot } V ?$
+
+w es ortogonal con v, ya que la múltiplicación entre ellos es igual a cero. Además de que el ángulo que los separa es igual a $\pi\ /2$
+
+
+
+3. Sean $A=(3,0,0)$, $B=(1,0,2)$, $C=(2,3,0)$ puntos en el espacio ($R^3$). 
+
+Con estos puntos:
+  a. Determine si el triángulo $ABC$ es rectángulo, obtusángulo o acutángulo.
+  b. Determine el perímetro del triángulo $ABC$
+  c. Determine el área del triángulo ABC
+
+
+a.
+```{r}
+a <- c(3,0,0)
+b <- c(1,0,2)
+c <- c(2,3,0)
+
+ab <- b-a
+bc <- c-b
+ca <- a-c
+
+angulo_ab_bc = 180*subspace(ab, bc)/pi
+angulo_bc_ca = 180*subspace(bc, ca)/pi
+angulo_ab_ca = 180*subspace(ab, ca)/pi
+
+angulo_ab_bc
+angulo_bc_ca
+angulo_ab_ca
+
+```
+
+Respuesta: El triángulo es acutángulo, ya que todos sus ángulos se encuentran entre 0 y 90 grados.
+
+
+b.
+
+```{r}
+a <- c(3,0,0)
+b <- c(1,0,2)
+c <- c(2,3,0)
+
+ab <- b-a
+bc <- c-b
+ca <- a-c
+
+norma_ab <- norm(ab, type="2")
+norma_bc <- norm(bc, type="2")
+norma_ca <- norm(ca, type="2")
+
+norma_ab + norma_bc + norma_ca
+```
+
+
+c.
+```{r}
+
+a <- c(3,0,0)
+b <- c(1,0,2)
+c <- c(2,3,0)
+
+ab <- b-a
+bc <- c-b
+ca <- a-c
+
+norma_ab <- norm(ab, type="2")
+norma_bc <- norm(bc, type="2")
+norma_ca <- norm(ca, type="2")
+
+perimetro <- norma_ab + norma_bc + norma_ca
+
+semiperimetro <- perimetro / 2
+
+# Por formula de Héron
+area = sqrt(semiperimetro * (semiperimetro - norma_ab) * (semiperimetro - norma_bc) * (semiperimetro - norma_ca))
+
+area
+
+```
+
+
+
+
+</br>
+
+#### II Parte
+
+</br>
+
+
+1. Compruebe que la matriz P, es ortogonal:
+
+```{r}
+p <- matrix(c(1/2, 1/2, 1/2, 1/2, 
+              (1/sqrt(2)), -(1/sqrt(2)), 0, 0, 
+              (1/sqrt(6)), (1/sqrt(6)), -(2/sqrt(6)), 0, 
+              (1/(2*sqrt(3))), (1/(2*sqrt(3))), (1/(2*sqrt(3))), -(3/(2*sqrt(3)))), 
+              nrow=4, ncol=4, byrow=TRUE)
+
+matriz_p <- fractions(p)
+
+matriz_p
+
+
+p_inversa <- solve(matriz_p)
+
+fractions(p_inversa)
+
+
+p_transpuesta <- t(p)
+
+fractions(p_transpuesta)
+
+```
+
+La matriz P es ortogonal puesto que su inversa y su transpuesta son iguales.
+
+
+2. Demuestre que A es indempotente.
+
+
+```{r}
+a <- matrix(c(2, -2, -4, 
+              -1, 3, 4,
+              1, -2, -3), 
+              3, 3, byrow=TRUE)
+
+
+a
+
+a%*%a
+
+```
+
+
+La matriz A es idempotente puesto que es igual a ella misma al cuadrado.
+
+
+3. Determine la composición $f(m)$
+
+```{r}
+m <- matrix(c(3/2, -5/2, 
+              2/3, -1/3), 
+              2, 2, byrow=TRUE)
+
+fractions(m)
+
+m3 <- m%*%m%*%m
+
+m2 <- m%*%m
+
+fx = 6*m3 + 3*m2 - m
+
+fractions(fx)
+
+```
+
+
+
+4. Encuentre la matriz inversa y el determinante de cada una de las siguientes matrices:
+
+```{r}
+
+a <- matrix(c(1, 2, 3, 
+              2, 5, 7,
+              -2, -4, -5), 
+              3, 3, byrow=TRUE)
+
+solve(a)
+det(a)
+
+b <- matrix(c(3, -2, -1, 
+              -4, 1, -1,
+              2, 0, 1), 
+              3, 3, byrow=TRUE)
+
+solve(b)
+det(b)
+
+
+c <- matrix(c(0, 2, 1, 
+              1, 3, -1,
+              -1, 1, 2), 
+              3, 3, byrow=TRUE)
+
+solve(c)
+det(c)
+
+d <- matrix(c(3, 6, 9, 
+              2, 5, 1,
+              1, 1, 8), 
+              3, 3, byrow=TRUE)
+
+det(d)
+
+```
+
+La última matriz no tiene inversa puesto que el determinante es cero, es decir la matriz es singular o invertible.
+
+
+Que relación existe entra las matrices que poseen inversas y el valor de su determinante? Sug: revisar la teoría vista en clase.
+
+
+
+
+<!-- ----------------------------------------------------------- -->
+<!--
+Esta sección es solo para agregar estilos y elementos 
+personalizados al html generado por rStudio  
+-->
+<!-- ----------------------------------------------------------- -->
+
+&nbsp;
+
+<hr />
+<p style="text-align: center;">Autor <a href="https://github.com/bdurans">Brian Duran</a></p>
+<p style="text-align: center;"><span style="color: #808080;"><em>bduran0393@gmail.com</em></span></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+    <a href="https://github.com/bdurans/tec_data_science_course/tree/master/mathematics_for_data_science/session_4_and_5_homework" class="fa fa-github"></a>
+</p>
+
+<a href="https://github.com/bdurans/tec_data_science_course/tree/master/mathematics_for_data_science/session_4_and_5_homework" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+<script>
+$(document).ready(function () {
+    $('pre.r').addClass('indent');
+});
+</script>
+
+<style>
+.indent {
+ margin-left: 30px;
+}
+</style>
+
+&nbsp;

@@ -1769,254 +1769,294 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwcmFjbWEpXG5saWJyYXJ5KG1vc2FpYylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwcmFjbWEpXG5saWJyYXJ5KG1vc2FpYylcbmxpYnJhcnkoTUFTUylcbmBgYCJ9 -->
 <pre class="r"><code>library(pracma)
-library(mosaic)</code></pre>
+library(mosaic)
+library(MASS)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBkcGx5clxuUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixZHBseXLjpLzjuLJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOnN0YXRz46S847iyOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmJhc2XjpLzjuLI6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGxhdHRpY2VcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogZ2dmb3JtdWxhXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGdncGxvdDJcblJlZ2lzdGVyZWQgUzMgbWV0aG9kcyBvdmVyd3JpdHRlbiBieSAnZ2dwbG90Mic6XG4gIG1ldGhvZCAgICAgICAgIGZyb20gXG4gIFsucXVvc3VyZXMgICAgIHJsYW5nXG4gIGMucXVvc3VyZXMgICAgIHJsYW5nXG4gIHByaW50LnF1b3N1cmVzIHJsYW5nXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGdnc3RhbmNlXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDjpLzjuLFnZ3N0YW5jZeOkvOO4slxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6Z2dwbG90MuOkvOO4sjpcblxuICAgIGdlb21fZXJyb3JiYXJoLCBHZW9tRXJyb3JiYXJoXG5cblxuTmV3IHRvIGdnZm9ybXVsYT8gIFRyeSB0aGUgdHV0b3JpYWxzOiBcblx0bGVhcm5yOjpydW5fdHV0b3JpYWwoXCJpbnRyb2R1Y3Rpb25cIiwgcGFja2FnZSA9IFwiZ2dmb3JtdWxhXCIpXG5cdGxlYXJucjo6cnVuX3R1dG9yaWFsKFwicmVmaW5pbmdcIiwgcGFja2FnZSA9IFwiZ2dmb3JtdWxhXCIpXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IG1vc2FpY0RhdGFcbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogTWF0cml4XG5cbkF0dGFjaGluZyBwYWNrYWdlOiDjpLzjuLFNYXRyaXjjpLzjuLJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOnByYWNtYeOkvOO4sjpcblxuICAgIGV4cG0sIGx1LCB0cmlsLCB0cml1XG5cblJlZ2lzdGVyZWQgUzMgbWV0aG9kcyBvdmVyd3JpdHRlbiBieSAnaHRtbHRvb2xzJzpcbiAgbWV0aG9kICAgICAgICAgICAgICAgZnJvbSAgICAgICAgIFxuICBwcmludC5odG1sICAgICAgICAgICB0b29sczpyc3R1ZGlvXG4gIHByaW50LnNoaW55LnRhZyAgICAgIHRvb2xzOnJzdHVkaW9cbiAgcHJpbnQuc2hpbnkudGFnLmxpc3QgdG9vbHM6cnN0dWRpb1xuUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2h0bWx3aWRnZXRzJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tICAgICAgICAgXG4gIHByaW50Lmh0bWx3aWRnZXQgdG9vbHM6cnN0dWRpb1xuUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ21vc2FpYyc6XG4gIG1ldGhvZCAgICAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gICBcbiAgZm9ydGlmeS5TcGF0aWFsUG9seWdvbnNEYXRhRnJhbWUgZ2dwbG90MlxuXG5UaGUgJ21vc2FpYycgcGFja2FnZSBtYXNrcyBzZXZlcmFsIGZ1bmN0aW9ucyBmcm9tIGNvcmUgcGFja2FnZXMgaW4gb3JkZXIgdG8gYWRkIFxuYWRkaXRpb25hbCBmZWF0dXJlcy4gIFRoZSBvcmlnaW5hbCBiZWhhdmlvciBvZiB0aGVzZSBmdW5jdGlvbnMgc2hvdWxkIG5vdCBiZSBhZmZlY3RlZCBieSB0aGlzLlxuXG5Ob3RlOiBJZiB5b3UgdXNlIHRoZSBNYXRyaXggcGFja2FnZSwgYmUgc3VyZSB0byBsb2FkIGl0IEJFRk9SRSBsb2FkaW5nIG1vc2FpYy5cblxuQXR0YWNoaW5nIHBhY2thZ2U6IOOkvOO4sW1vc2FpY+OkvOO4slxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOk1hdHJpeOOkvOO4sjpcblxuICAgIG1lYW5cblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpnZ3Bsb3Qy46S847iyOlxuXG4gICAgc3RhdFxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6ZHBseXLjpLzjuLI6XG5cbiAgICBjb3VudCwgZG8sIHRhbGx5XG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpwcmFjbWHjpLzjuLI6XG5cbiAgICBjcm9zcywgZGVnMnJhZCwgZG90LCBsb2dpdCwgcGRpc3QsIHJhZDJkZWcsIHJhbmRcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOnN0YXRz46S847iyOlxuXG4gICAgYmlub20udGVzdCwgY29yLCBjb3IudGVzdCwgY292LCBmaXZlbnVtLCBJUVIsIG1lZGlhbiwgcHJvcC50ZXN0LCBxdWFudGlsZSwgc2QsIHQudGVzdCwgdmFyXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpiYXNl46S847iyOlxuXG4gICAgbWF4LCBtZWFuLCBtaW4sIHByb2QsIHJhbmdlLCBzYW1wbGUsIHN1bVxuIn0= -->
-<pre><code>Loading required package: dplyr
-Registered S3 method overwritten by &#39;dplyr&#39;:
-  method           from
-  print.rowwise_df     
-
-Attaching package: 㤼㸱dplyr㤼㸲
-
-The following objects are masked from 㤼㸱package:stats㤼㸲:
-
-    filter, lag
-
-The following objects are masked from 㤼㸱package:base㤼㸲:
-
-    intersect, setdiff, setequal, union
-
-Loading required package: lattice
-Loading required package: ggformula
-Loading required package: ggplot2
-Registered S3 methods overwritten by &#39;ggplot2&#39;:
-  method         from 
-  [.quosures     rlang
-  c.quosures     rlang
-  print.quosures rlang
-Loading required package: ggstance
-
-Attaching package: 㤼㸱ggstance㤼㸲
-
-The following objects are masked from 㤼㸱package:ggplot2㤼㸲:
-
-    geom_errorbarh, GeomErrorbarh
-
-
-New to ggformula?  Try the tutorials: 
-    learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-    learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)
-Loading required package: mosaicData
-Loading required package: Matrix
-
-Attaching package: 㤼㸱Matrix㤼㸲
-
-The following objects are masked from 㤼㸱package:pracma㤼㸲:
-
-    expm, lu, tril, triu
-
-Registered S3 methods overwritten by &#39;htmltools&#39;:
-  method               from         
-  print.html           tools:rstudio
-  print.shiny.tag      tools:rstudio
-  print.shiny.tag.list tools:rstudio
-Registered S3 method overwritten by &#39;htmlwidgets&#39;:
-  method           from         
-  print.htmlwidget tools:rstudio
-Registered S3 method overwritten by &#39;mosaic&#39;:
-  method                           from   
-  fortify.SpatialPolygonsDataFrame ggplot2
-
-The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-additional features.  The original behavior of these functions should not be affected by this.
-
-Note: If you use the Matrix package, be sure to load it BEFORE loading mosaic.
-
-Attaching package: 㤼㸱mosaic㤼㸲
-
-The following object is masked from 㤼㸱package:Matrix㤼㸲:
-
-    mean
-
-The following object is masked from 㤼㸱package:ggplot2㤼㸲:
-
-    stat
-
-The following objects are masked from 㤼㸱package:dplyr㤼㸲:
-
-    count, do, tally
-
-The following objects are masked from 㤼㸱package:pracma㤼㸲:
-
-    cross, deg2rad, dot, logit, pdist, rad2deg, rand
-
-The following objects are masked from 㤼㸱package:stats㤼㸲:
-
-    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test, quantile, sd, t.test, var
-
-The following objects are masked from 㤼㸱package:base㤼㸲:
-
-    max, mean, min, prod, range, sample, sum</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShNQVNTKVxuYGBgIn0= -->
-<pre class="r"><code>library(MASS)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixTUFTU+OkvOO4slxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmRwbHly46S847iyOlxuXG4gICAgc2VsZWN0XG4ifQ== -->
-<pre><code>
-Attaching package: 㤼㸱MASS㤼㸲
-
-The following object is masked from 㤼㸱package:dplyr㤼㸲:
-
-    select</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudSA8LSBjKDIsIDQsIC01KVxudiA8LSBjKC0zLCAtMiwgMSlcbnByYWNtYTo6Y3Jvc3ModSx2KVxuYGBgIn0= -->
-<pre class="r"><code>u &lt;- c(2, 4, -5)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudSA8LSBjKDIsIDQsIC01KVxudiA8LSBjKC0zLCAtMiwgMSlcbnByYWNtYTo6Y3Jvc3ModSx2KVxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+u &lt;- c(2, 4, -5)
 v &lt;- c(-3, -2, 1)
 pracma::cross(u,v)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIC02IDEzICA4XG4ifQ== -->
-<pre><code>[1] -6 13  8</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Ej: Determine el area del triángulo con vértices P=(5,4,5), Q=(4,10,6) y R=(1,8,7)</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucCA8LSBjKDUsNCw1KTsgcSA8LSBjKDQsMTAsNik7IHIgPC0gYygxLDgsNylcblxucHEgPC0gcS1wXG5wciA8LSByLXBcbnBjcnV6IDwtIGFzLm1hdHJpeChwcmFjbWE6OmNyb3NzKHBxLCBwcikpXG5hcmVhIDwtIG5vcm0ocGNydXosIHR5cGUgPSBcIjJcIilcbiMgw6FyZWEgZGUgdG9kbyBlbCBwYXJhbGVsb2dyYW1vXG5hcmVhXG4jIMOhcmVhIGRlbCB0cmnDoW5ndWxvXG5hcmVhIC8gMlxuXG4jIFVzYW5kbyBsYSBmdW5jacOzbiBOb3JtIGRlbCBwYXF1ZXRlIHByYWNtYVxuYXJlYTIgPC0gTm9ybShwcmFjbWE6OmNyb3NzKHBxLHByKSkvMlxuYXJlYTJcbmBgYCJ9 -->
-<pre class="r"><code>p &lt;- c(5,4,5); q &lt;- c(4,10,6); r &lt;- c(1,8,7)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIC02IDEzICA4XG4ifQ== --&gt;
+</code></pre>
+<p>[1] -6 13 8</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+Ej: Determine el area del triángulo con vértices P=(5,4,5), Q=(4,10,6) y R=(1,8,7)
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucCA8LSBjKDUsNCw1KTsgcSA8LSBjKDQsMTAsNik7IHIgPC0gYygxLDgsNylcblxucHEgPC0gcS1wXG5wciA8LSByLXBcbnBjcnV6IDwtIGFzLm1hdHJpeChwcmFjbWE6OmNyb3NzKHBxLCBwcikpXG5hcmVhIDwtIG5vcm0ocGNydXosIHR5cGUgPSBcXDJcXClcbiMgw4PCoXJlYSBkZSB0b2RvIGVsIHBhcmFsZWxvZ3JhbW9cbmFyZWFcbiMgw4PCoXJlYSBkZWwgdHJpw4PCoW5ndWxvXG5hcmVhIC8gMlxuXG4jIFVzYW5kbyBsYSBmdW5jacODwrNuIE5vcm0gZGVsIHBhcXVldGUgcHJhY21hXG5hcmVhMiA8LSBOb3JtKHByYWNtYTo6Y3Jvc3MocHEscHIpKS8yXG5hcmVhMlxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+p &lt;- c(5,4,5); q &lt;- c(4,10,6); r &lt;- c(1,8,7)
 
 pq &lt;- q-p
 pr &lt;- r-p
 pcruz &lt;- as.matrix(pracma::cross(pq, pr))
-area &lt;- norm(pcruz, type = &quot;2&quot;)
-# área de todo el paralelogramo
+area &lt;- norm(pcruz, type = \2\)
+# Ã¡rea de todo el paralelogramo
 area
-# área del triángulo
+# Ã¡rea del triÃ¡ngulo
 area / 2
 
-# Usando la función Norm del paquete pracma
+# Usando la funciÃ³n Norm del paquete pracma
 area2 &lt;- Norm(pracma::cross(pq,pr))/2
 area2</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="proyecciones" class="section level1">
-<h1>Proyecciones:</h1>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudSA8LSBjKDIsMywxKVxudiA8LSBjKDEsMiwtNilcblxucHJvamVjdCh1LHYsIHR5cGU9XCJjb2VmXCIpXG5wcm9qZWN0KHUsdiwgdHlwZT1cImNvZWZcIikgKiB2XG5wcm95IDwtIHByb2plY3QodSx2KVxuIyBmcm9tIE1BU1MgcGFja2FnZVxuZnJhY3Rpb25zKHByb3kpXG5gYGAifQ== -->
-<pre class="r"><code>u &lt;- c(2,3,1)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+# Proyecciones: 
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudSA8LSBjKDIsMywxKVxudiA8LSBjKDEsMiwtNilcblxucHJvamVjdCh1LHYsIHR5cGU9XFxjb2VmXFwpXG5wcm9qZWN0KHUsdiwgdHlwZT1cXGNvZWZcXCkgKiB2XG5wcm95IDwtIHByb2plY3QodSx2KVxuIyBmcm9tIE1BU1MgcGFja2FnZVxuZnJhY3Rpb25zKHByb3kpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+u &lt;- c(2,3,1)
 v &lt;- c(1,2,-6)
 
-project(u,v, type=&quot;coef&quot;)
-project(u,v, type=&quot;coef&quot;) * v
+project(u,v, type=\coef\)
+project(u,v, type=\coef\) * v
 proy &lt;- project(u,v)
 # from MASS package
 fractions(proy)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="matrices" class="section level1">
-<h1>Matrices</h1>
-<p>Un fabricante produce 4 artículos, su demanda esta dada por la siguiente matriz</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvZHVjdG9zIDwtIG1hdHJpeChjKDMwLDIwLDQwLDEwLDI1LDMyLDM4LDcsMzMsMjAsNDUsNSksIG5yb3c9MywgbmNvbD00LCBieXJvdz1UUlVFKVxucHJvZHVjdG9zXG5gYGAifQ== -->
-<pre class="r"><code>productos &lt;- matrix(c(30,20,40,10,25,32,38,7,33,20,45,5), nrow=3, ncol=4, byrow=TRUE)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+# Matrices
+
+Un fabricante produce 4 artículos, su demanda esta dada por la siguiente matriz
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJvZHVjdG9zIDwtIG1hdHJpeChjKDMwLDIwLDQwLDEwLDI1LDMyLDM4LDcsMzMsMjAsNDUsNSksIG5yb3c9MywgbmNvbD00LCBieXJvdz1UUlVFKVxucHJvZHVjdG9zXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+productos &lt;- matrix(c(30,20,40,10,25,32,38,7,33,20,45,5), nrow=3, ncol=4, byrow=TRUE)
 productos</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdXG5bMSxdICAgMzAgICAyMCAgIDQwICAgMTBcblsyLF0gICAyNSAgIDMyICAgMzggICAgN1xuWzMsXSAgIDMzICAgMjAgICA0NSAgICA1XG4ifQ== -->
-<pre><code>     [,1] [,2] [,3] [,4]
-[1,]   30   20   40   10
-[2,]   25   32   38    7
-[3,]   33   20   45    5</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Los precios por unidad que recibe el fabricante por dichos artículos, considerante 3 posibilidades sería (precio en $)</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJlY2lvcyA8LSBtYXRyaXgoYygyMCwxOCwyNSwxNSwxNywxNSwxOCwxNiwyMCw0MCwzOCwzMyksIG5yb3c9NCwgbmNvbD0zLCBieXJvdz1UUlVFKVxucHJlY2lvc1xuYGBgIn0= -->
-<pre class="r"><code>precios &lt;- matrix(c(20,18,25,15,17,15,18,16,20,40,38,33), nrow=4, ncol=3, byrow=TRUE)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdXG5bMSxdICAgMzAgICAyMCAgIDQwICAgMTBcblsyLF0gICAyNSAgIDMyICAgMzggICAgN1xuWzMsXSAgIDMzICAgMjAgICA0NSAgICA1XG4ifQ== --&gt;
+</code></pre>
+<pre><code> [,1] [,2] [,3] [,4]</code></pre>
+<p>[1,] 30 20 40 10 [2,] 25 32 38 7 [3,] 33 20 45 5</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+Los precios por unidad que recibe el fabricante por dichos artículos, considerante 3 posibilidades sería (precio en $)
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJlY2lvcyA8LSBtYXRyaXgoYygyMCwxOCwyNSwxNSwxNywxNSwxOCwxNiwyMCw0MCwzOCwzMyksIG5yb3c9NCwgbmNvbD0zLCBieXJvdz1UUlVFKVxucHJlY2lvc1xuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+precios &lt;- matrix(c(20,18,25,15,17,15,18,16,20,40,38,33), nrow=4, ncol=3, byrow=TRUE)
 precios</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAgIDIwICAgMTggICAyNVxuWzIsXSAgIDE1ICAgMTcgICAxNVxuWzMsXSAgIDE4ICAgMTYgICAyMFxuWzQsXSAgIDQwICAgMzggICAzM1xuIn0= -->
-<pre><code>     [,1] [,2] [,3]
-[1,]   20   18   25
-[2,]   15   17   15
-[3,]   18   16   20
-[4,]   40   38   33</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvZHVjdG9zIDwtIG1hdHJpeChjKDMwLDIwLDQwLDEwLDI1LDMyLDM4LDcsMzMsMjAsNDUsNSksIG5yb3c9MywgbmNvbD00LCBieXJvdz1UUlVFKVxucHJlY2lvcyA8LSBtYXRyaXgoYygyMCwxOCwyNSwxNSwxNywxNSwxOCwxNiwyMCw0MCwzOCwzMyksIDQsIDMsIGJ5cm93PVQpXG5tID0gcHJvZHVjdG9zICUqJSBwcmVjaW9zXG5tXG5gYGAifQ== -->
-<pre class="r"><code>productos &lt;- matrix(c(30,20,40,10,25,32,38,7,33,20,45,5), nrow=3, ncol=4, byrow=TRUE)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAgIDIwICAgMTggICAyNVxuWzIsXSAgIDE1ICAgMTcgICAxNVxuWzMsXSAgIDE4ICAgMTYgICAyMFxuWzQsXSAgIDQwICAgMzggICAzM1xuIn0= --&gt;
+</code></pre>
+<pre><code> [,1] [,2] [,3]</code></pre>
+<p>[1,] 20 18 25 [2,] 15 17 15 [3,] 18 16 20 [4,] 40 38 33</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJvZHVjdG9zIDwtIG1hdHJpeChjKDMwLDIwLDQwLDEwLDI1LDMyLDM4LDcsMzMsMjAsNDUsNSksIG5yb3c9MywgbmNvbD00LCBieXJvdz1UUlVFKVxucHJlY2lvcyA8LSBtYXRyaXgoYygyMCwxOCwyNSwxNSwxNywxNSwxOCwxNiwyMCw0MCwzOCwzMyksIDQsIDMsIGJ5cm93PVQpXG5tID0gcHJvZHVjdG9zICUqJSBwcmVjaW9zXG5tXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+productos &lt;- matrix(c(30,20,40,10,25,32,38,7,33,20,45,5), nrow=3, ncol=4, byrow=TRUE)
 precios &lt;- matrix(c(20,18,25,15,17,15,18,16,20,40,38,33), 4, 3, byrow=T)
 m = productos %*% precios
 m</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAyMDIwIDE5MDAgMjE4MFxuWzIsXSAxOTQ0IDE4NjggMjA5NlxuWzMsXSAxOTcwIDE4NDQgMjE5MFxuIn0= -->
-<pre><code>     [,1] [,2] [,3]
-[1,] 2020 1900 2180
-[2,] 1944 1868 2096
-[3,] 1970 1844 2190</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubVsyLDNdXG5gYGAifQ== -->
-<pre class="r"><code>m[2,3]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIwOTZcbiJ9 -->
-<pre><code>[1] 2096</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubVsyLF1cbmBgYCJ9 -->
-<pre class="r"><code>m[2,]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE5NDQgMTg2OCAyMDk2XG4ifQ== -->
-<pre><code>[1] 1944 1868 2096</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubVssM11cbmBgYCJ9 -->
-<pre class="r"><code>m[,3]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIxODAgMjA5NiAyMTkwXG4ifQ== -->
-<pre><code>[1] 2180 2096 2190</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="sistema-de-m-ecuaciones-lineales-con-n-incognitas" class="section level1">
-<h1>Sistema de m ecuaciones lineales con n incógnitas</h1>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucyA8LSBtYXRyaXgoYygyLCA0LCA2LCAxOCwgNCwgNSwgNiwgMjQsIDMsIDEsIC0yLCA0KSwgMywgNCwgYnlyb3c9VClcbnNcbmBgYCJ9 -->
-<pre class="r"><code>s &lt;- matrix(c(2, 4, 6, 18, 4, 5, 6, 24, 3, 1, -2, 4), 3, 4, byrow=T)
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXVxuWzEsXSAyMDIwIDE5MDAgMjE4MFxuWzIsXSAxOTQ0IDE4NjggMjA5NlxuWzMsXSAxOTcwIDE4NDQgMjE5MFxuIn0= --&gt;
+</code></pre>
+<pre><code> [,1] [,2] [,3]</code></pre>
+<p>[1,] 2020 1900 2180 [2,] 1944 1868 2096 [3,] 1970 1844 2190</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubVsyLDNdXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+m[2,3]</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIwOTZcbiJ9 --&gt;
+</code></pre>
+<p>[1] 2096</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubVsyLF1cbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+m[2,]</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE5NDQgMTg2OCAyMDk2XG4ifQ== --&gt;
+</code></pre>
+<p>[1] 1944 1868 2096</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubVssM11cbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+m[,3]</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIxODAgMjA5NiAyMTkwXG4ifQ== --&gt;
+</code></pre>
+<p>[1] 2180 2096 2190</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+# Sistema de m ecuaciones lineales con n incógnitas
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucyA8LSBtYXRyaXgoYygyLCA0LCA2LCAxOCwgNCwgNSwgNiwgMjQsIDMsIDEsIC0yLCA0KSwgMywgNCwgYnlyb3c9VClcbnNcbmBgYFxuYGBgIn0= --&gt;
+
+```r
+```r
+s &lt;- matrix(c(2, 4, 6, 18, 4, 5, 6, 24, 3, 1, -2, 4), 3, 4, byrow=T)
 s</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdXG5bMSxdICAgIDIgICAgNCAgICA2ICAgMThcblsyLF0gICAgNCAgICA1ICAgIDYgICAyNFxuWzMsXSAgICAzICAgIDEgICAtMiAgICA0XG4ifQ== -->
-<pre><code>     [,1] [,2] [,3] [,4]
-[1,]    2    4    6   18
-[2,]    4    5    6   24
-[3,]    3    1   -2    4</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnJlZihzKVxuYGBgIn0= -->
-<pre class="r"><code>rref(s)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdXG5bMSxdICAgIDEgICAgMCAgICAwICAgIDRcblsyLF0gICAgMCAgICAxICAgIDAgICAtMlxuWzMsXSAgICAwICAgIDAgICAgMSAgICAzXG4ifQ== -->
-<pre><code>     [,1] [,2] [,3] [,4]
-[1,]    1    0    0    4
-[2,]    0    1    0   -2
-[3,]    0    0    1    3</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdXG5bMSxdICAgIDIgICAgNCAgICA2ICAgMThcblsyLF0gICAgNCAgICA1ICAgIDYgICAyNFxuWzMsXSAgICAzICAgIDEgICAtMiAgICA0XG4ifQ== --&gt;
+</code></pre>
+<pre><code> [,1] [,2] [,3] [,4]</code></pre>
+<p>[1,] 2 4 6 18 [2,] 4 5 6 24 [3,] 3 1 -2 4</p>
+<pre><code>
+
+
+&lt;!-- rnb-output-end --&gt;
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucnJlZihzKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+rref(s)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdXG5bMSxdICAgIDEgICAgMCAgICAwICAgIDRcblsyLF0gICAgMCAgICAxICAgIDAgICAtMlxuWzMsXSAgICAwICAgIDAgICAgMSAgICAzXG4ifQ== --&gt;
+</code></pre>
+<pre><code> [,1] [,2] [,3] [,4]</code></pre>
+<p>[1,] 1 0 0 4 [2,] 0 1 0 -2 [3,] 0 0 1 3 ```</p>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
-</div>
 
 <div id="rmd-source-code">LS0tDQp0aXRsZTogIkNsYXNlIDA1Ig0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KDQpgYGB7cn0NCmxpYnJhcnkocHJhY21hKQ0KbGlicmFyeShtb3NhaWMpDQpsaWJyYXJ5KE1BU1MpDQpgYGANCg0KYGBge3J9DQp1IDwtIGMoMiwgNCwgLTUpDQp2IDwtIGMoLTMsIC0yLCAxKQ0KcHJhY21hOjpjcm9zcyh1LHYpDQpgYGANCg0KRWo6IERldGVybWluZSBlbCBhcmVhIGRlbCB0cmnDoW5ndWxvIGNvbiB2w6lydGljZXMgUD0oNSw0LDUpLCBRPSg0LDEwLDYpIHkgUj0oMSw4LDcpDQoNCmBgYHtyfQ0KcCA8LSBjKDUsNCw1KTsgcSA8LSBjKDQsMTAsNik7IHIgPC0gYygxLDgsNykNCg0KcHEgPC0gcS1wDQpwciA8LSByLXANCnBjcnV6IDwtIGFzLm1hdHJpeChwcmFjbWE6OmNyb3NzKHBxLCBwcikpDQphcmVhIDwtIG5vcm0ocGNydXosIHR5cGUgPSAiMiIpDQojIMOhcmVhIGRlIHRvZG8gZWwgcGFyYWxlbG9ncmFtbw0KYXJlYQ0KIyDDoXJlYSBkZWwgdHJpw6FuZ3Vsbw0KYXJlYSAvIDINCg0KIyBVc2FuZG8gbGEgZnVuY2nDs24gTm9ybSBkZWwgcGFxdWV0ZSBwcmFjbWENCmFyZWEyIDwtIE5vcm0ocHJhY21hOjpjcm9zcyhwcSxwcikpLzINCmFyZWEyDQpgYGANCg0KIyBQcm95ZWNjaW9uZXM6IA0KDQpgYGB7cn0NCnUgPC0gYygyLDMsMSkNCnYgPC0gYygxLDIsLTYpDQoNCnByb2plY3QodSx2LCB0eXBlPSJjb2VmIikNCnByb2plY3QodSx2LCB0eXBlPSJjb2VmIikgKiB2DQpwcm95IDwtIHByb2plY3QodSx2KQ0KIyBmcm9tIE1BU1MgcGFja2FnZQ0KZnJhY3Rpb25zKHByb3kpDQpgYGANCg0KIyBNYXRyaWNlcw0KDQpVbiBmYWJyaWNhbnRlIHByb2R1Y2UgNCBhcnTDrWN1bG9zLCBzdSBkZW1hbmRhIGVzdGEgZGFkYSBwb3IgbGEgc2lndWllbnRlIG1hdHJpeg0KDQpgYGB7cn0NCnByb2R1Y3RvcyA8LSBtYXRyaXgoYygzMCwyMCw0MCwxMCwyNSwzMiwzOCw3LDMzLDIwLDQ1LDUpLCBucm93PTMsIG5jb2w9NCwgYnlyb3c9VFJVRSkNCnByb2R1Y3Rvcw0KDQpgYGANCg0KTG9zIHByZWNpb3MgcG9yIHVuaWRhZCBxdWUgcmVjaWJlIGVsIGZhYnJpY2FudGUgcG9yIGRpY2hvcyBhcnTDrWN1bG9zLCBjb25zaWRlcmFudGUgMyBwb3NpYmlsaWRhZGVzIHNlcsOtYSAocHJlY2lvIGVuICQpDQoNCmBgYHtyfQ0KcHJlY2lvcyA8LSBtYXRyaXgoYygyMCwxOCwyNSwxNSwxNywxNSwxOCwxNiwyMCw0MCwzOCwzMyksIG5yb3c9NCwgbmNvbD0zLCBieXJvdz1UUlVFKQ0KcHJlY2lvcw0KYGBgDQoNCg0KYGBge3J9DQpwcm9kdWN0b3MgPC0gbWF0cml4KGMoMzAsMjAsNDAsMTAsMjUsMzIsMzgsNywzMywyMCw0NSw1KSwgbnJvdz0zLCBuY29sPTQsIGJ5cm93PVRSVUUpDQpwcmVjaW9zIDwtIG1hdHJpeChjKDIwLDE4LDI1LDE1LDE3LDE1LDE4LDE2LDIwLDQwLDM4LDMzKSwgNCwgMywgYnlyb3c9VCkNCm0gPSBwcm9kdWN0b3MgJSolIHByZWNpb3MNCm0NCg0KbVsyLDNdDQptWzIsXQ0KbVssM10NCmBgYA0KDQojIFNpc3RlbWEgZGUgbSBlY3VhY2lvbmVzIGxpbmVhbGVzIGNvbiBuIGluY8OzZ25pdGFzDQoNCmBgYHtyfQ0KcyA8LSBtYXRyaXgoYygyLCA0LCA2LCAxOCwgNCwgNSwgNiwgMjQsIDMsIDEsIC0yLCA0KSwgMywgNCwgYnlyb3c9VCkNCnMNCiMgDQpycmVmKHMpDQpgYGA=</div>
 
