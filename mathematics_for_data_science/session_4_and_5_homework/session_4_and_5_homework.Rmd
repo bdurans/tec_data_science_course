@@ -16,7 +16,7 @@ library(MASS)
 ### Brian Durán
 ![](../logo_ciencia_de_datos.png)
 
-<h1><center> Tarea: Sesión 2 y 3 </center></h1>
+<h1><center> Tarea: Sesión 4 y 5 </center></h1>
 
 </br>
 
@@ -51,13 +51,6 @@ rs
 $proy_{\vec{PQ}}\vec{RS}$
 
 ```{r, class.source="indent", class.output="indent"}
-r <- c(2,-5)
-s <- c(1,-2)
-rs <- s - r
-
-q <- c(5,2)
-p <- c(2,3)
-pq <- q - p
 
 proy <- project(rs, pq)
 
@@ -83,19 +76,16 @@ sum(u*v)
 ${\|v\|^2}$
 
 ```{r, class.source="indent", class.output="indent"}
-v <- c(2,4,5)
-norm(v, type="2")^2
+
+v2 <- norm(v, type="2")^2
+v2
 ```
 
 $w = u - \frac{u \cdot v}{\|v\|^2} v$
 
 
 ```{r, class.source="indent", class.output="indent"}
-v <- c(2,4,5)
-v2 <- norm(v, type="2")^2
 
-u <- c(-2,1,6)
-v <- c(2,4,5)
 prod_punto_u_v = sum(u*v)
 
 w = u - ((prod_punto_u_v / v2) * v)
@@ -119,13 +109,10 @@ w es ortogonal con v, ya que la múltiplicación entre ellos es igual a cero. Ad
 3. Sean $A=(3,0,0)$, $B=(1,0,2)$, $C=(2,3,0)$ puntos en el espacio ($R^3$). 
 
 Con estos puntos:
+
   a. Determine si el triángulo $ABC$ es rectángulo, obtusángulo o acutángulo.
-  b. Determine el perímetro del triángulo $ABC$
-  c. Determine el área del triángulo ABC
 
-
-a.
-```{r}
+```{r, class.source="indent", class.output="indent"}
 a <- c(3,0,0)
 b <- c(1,0,2)
 c <- c(2,3,0)
@@ -134,30 +121,19 @@ ab <- b-a
 bc <- c-b
 ca <- a-c
 
-angulo_ab_bc = 180*subspace(ab, bc)/pi
-angulo_bc_ca = 180*subspace(bc, ca)/pi
-angulo_ab_ca = 180*subspace(ab, ca)/pi
-
-angulo_ab_bc
-angulo_bc_ca
-angulo_ab_ca
+180*subspace(as.matrix(ab), as.matrix(bc))/pi
+180*subspace(as.matrix(bc), as.matrix(ca))/pi
+180*subspace(as.matrix(ab), as.matrix(ca))/pi
 
 ```
+
 
 Respuesta: El triángulo es acutángulo, ya que todos sus ángulos se encuentran entre 0 y 90 grados.
 
 
-b.
+b. Determine el perímetro del triángulo $ABC$
 
-```{r}
-a <- c(3,0,0)
-b <- c(1,0,2)
-c <- c(2,3,0)
-
-ab <- b-a
-bc <- c-b
-ca <- a-c
-
+```{r, class.source="indent", class.output="indent"}
 norma_ab <- norm(ab, type="2")
 norma_bc <- norm(bc, type="2")
 norma_ca <- norm(ca, type="2")
@@ -166,23 +142,8 @@ norma_ab + norma_bc + norma_ca
 ```
 
 
-c.
-```{r}
-
-a <- c(3,0,0)
-b <- c(1,0,2)
-c <- c(2,3,0)
-
-ab <- b-a
-bc <- c-b
-ca <- a-c
-
-norma_ab <- norm(ab, type="2")
-norma_bc <- norm(bc, type="2")
-norma_ca <- norm(ca, type="2")
-
-perimetro <- norma_ab + norma_bc + norma_ca
-
+c. Determine el área del triángulo ABC
+```{r, class.source="indent", class.output="indent"}
 semiperimetro <- perimetro / 2
 
 # Por formula de Héron
@@ -191,8 +152,6 @@ area = sqrt(semiperimetro * (semiperimetro - norma_ab) * (semiperimetro - norma_
 area
 
 ```
-
-
 
 
 </br>
@@ -204,7 +163,7 @@ area
 
 1. Compruebe que la matriz P, es ortogonal:
 
-```{r}
+```{r, class.source="indent", class.output="indent"}
 p <- matrix(c(1/2, 1/2, 1/2, 1/2, 
               (1/sqrt(2)), -(1/sqrt(2)), 0, 0, 
               (1/sqrt(6)), (1/sqrt(6)), -(2/sqrt(6)), 0, 
@@ -233,7 +192,7 @@ La matriz P es ortogonal puesto que su inversa y su transpuesta son iguales.
 2. Demuestre que A es indempotente.
 
 
-```{r}
+```{r, class.source="indent", class.output="indent"}
 a <- matrix(c(2, -2, -4, 
               -1, 3, 4,
               1, -2, -3), 
@@ -252,7 +211,7 @@ La matriz A es idempotente puesto que es igual a ella misma al cuadrado.
 
 3. Determine la composición $f(m)$
 
-```{r}
+```{r, class.source="indent", class.output="indent"}
 m <- matrix(c(3/2, -5/2, 
               2/3, -1/3), 
               2, 2, byrow=TRUE)
@@ -273,7 +232,7 @@ fractions(fx)
 
 4. Encuentre la matriz inversa y el determinante de cada una de las siguientes matrices:
 
-```{r}
+```{r, class.source="indent", class.output="indent"}
 
 a <- matrix(c(1, 2, 3, 
               2, 5, 7,
@@ -297,7 +256,7 @@ c <- matrix(c(0, 2, 1,
               -1, 1, 2), 
               3, 3, byrow=TRUE)
 
-solve(c)
+fractions(solve(c))
 det(c)
 
 d <- matrix(c(3, 6, 9, 
@@ -312,9 +271,109 @@ det(d)
 La última matriz no tiene inversa puesto que el determinante es cero, es decir la matriz es singular o invertible.
 
 
-Que relación existe entra las matrices que poseen inversas y el valor de su determinante? Sug: revisar la teoría vista en clase.
+Que relación existe entre las matrices que poseen inversas y el valor de su determinante? Sug: revisar la teoría vista en clase.
+Cuando una matriz posee inversa, se puede asumir que su determinante es mayor a cero.
 
 
+</br>
+
+5. ¿Cómo se propaga una enfermedad contagiosa?. Suponga que un grupo de 4 individuos que llamaremos $I_{1}, I_{2}, I_{3}, I_{4}$, han contraído una enfermedad.
+
+Este grupo entra en contacto con 6 personas de un segundo grupo: $P_{1}, P_{2}, P_{3}, P_{4}, P_{5}, P_{6}$. Este tipo de contactos se llaman directos y se pueden representar en una matriz de 4 x 6, como la que se muestra a continuación:
+
+<center>![](matriz_contagio.png)</center>
+
+Note que la forma de construir dicha matriz es, colocando un 1 si una persona del primer grupo (contagiados) entra en contacto con alguna persona del segundo grupo.
+
+Llamemos $A$ a esta matriz de contactos Primer Contacto Directo:
+
+<center>![](matriz_a.png)</center>
+
+Ahora suponga que las 6 personas del grupo 2 entró en contacto directo con un tercer grupo
+de cinco personas $M_{1}, M_{2}, M_{3}, M_{4}, M_{5}, M_{6}$ de la siguiente manera:
+
+<center>![](matriz_contagio_indirecto.png)</center>
+
+Llamamos $B$ a esta segunda matriz de contacto:
+
+<center>![](matriz_b.png)</center>
+
+</br>
+
+La lógica es igual que en el caso anterior, 1 significa que un individuo del segundo grupo estuvo en contacto con un individuo del tercer grupo. Los contactos indirectos o de segundo orden, se pueden dar entre individuos del primer grupo con individuos del tercer grupo, esto es, que una persona del grupo 3, puede ser contagiada por alguien del grupo 2 que a su vez fue contagiada por alguien del grupo 1. A manera de ejemplo, note que las posiciones $a_{24}=1\ y \ b_{45}=1$, con esto, se ve que indirectamente la quinta persona del grupo 3, tuvo contacto con una persona del grupo 1 a través de la cuarta persona del grupo 2, así:
+
+<center>![](arrows.png)</center>
+
+</br>
+
+Con respecto al caso anterior, realice los siguiente:
+
+a. Calcule una nueva matriz $C$, tal que $C=A \cdot B$ (Tome en cuenta que el producto es matricial, al trabajarlo en R).
+
+```{r, class.source="indent", class.output="indent"}
+
+a_encabezados = list(c("I1", "I2", "I3", "I4"), c("P1", "P2", "P3", "P4", "P5", "P6"))
+
+a <- matrix(c(0, 1, 0, 0, 1, 0,
+              1, 0, 0, 1, 0, 1,
+              0, 0, 0, 1, 1, 0,
+              1, 0, 0, 0, 0, 1),
+              4, 6, byrow=TRUE, dimnames=a_encabezados)
+
+a
+
+b_encabezados = list(c("P1", "P2", "P3", "P4", "P5", "P6"), c("M1", "M2", "M3", "M4", "M5"))
+
+b <- matrix(c(0, 0, 1, 0, 1,
+              0, 0, 0, 1, 0,
+              0, 1, 0, 0, 0,
+              1, 0, 0, 0, 1,
+              0, 0, 0, 1, 0,
+              0, 0, 1, 0, 0),
+              6, 5, byrow=TRUE, dimnames=b_encabezados)
+b
+
+c <- a%*%b
+c
+
+```
+
+b. ¿Cuáles grupos de individuos (Grupo 1, 2 o 3) están quedando representados en $C$?, ¿quiénes están representados en las filas y quiénes en las columnas?
+
+En la matriz $C$ se están representanto los individuos de los tres grupos, ya que se demuestran los contactos directos e indirectos. Las filas representan a los individuos del grupo 1 ($I$) y la sumatoria de la fila representa los contactos indirectos que tuvo el individuo $I_n$ con miembros del grupo $M$ a través de miembros del grupo $P$. Las columnas representan a los miembros del grupo 3 ($M$) y la sumatoria de la columna la cantidad total de contactos indirectos que tuvo el individuo ($M_n$) con individuos del grupo $I$ a través de $P$.
+
+
+c. Tome la fila 2 de $C$ e interprétela (haga la extracción de esta usando un comando apropiado en R).
+```{r, class.source="indent", class.output="indent"}
+c[2,]
+```
+
+El individuo $I_{2}$ fue la persona que más contagio a miembros del grupo $M$ de manera indirecta.
+
+
+d. Tome la columna 2 y 5 de $C$ e interprételas (Use comandos apropiados en R para la extracción)
+
+```{r, class.source="indent", class.output="indent"}
+c[,2]
+```
+
+El individuo $M_{2}$ no tuvo contacto con algún $P$ que tuviera contacto con algún $I$. Por lo tanto $M_{2}$ no fue contagiado.
+
+
+```{r, class.source="indent", class.output="indent"}
+c[,5]
+```
+
+El individuo $M_{5}$ fue el miembro del grupo 3 que más contactos indirectos tuvo con miembros del grupo 1 $I$.
+
+
+e. Interprete la posición $C_{43}$ (Extraiga la entrada, usando el comando apropiado en R).
+
+```{r, class.source="indent", class.output="indent"}
+c[4,3]
+```
+
+El individuo $I_4$ tuvo **2** contactos indirectos con el miembro $M_3$ a través de 2 miembros del grupo 2 ($P$)
 
 
 <!-- ----------------------------------------------------------- -->
@@ -343,6 +402,7 @@ personalizados al html generado por rStudio
 <script>
 $(document).ready(function () {
     $('pre.r').addClass('indent');
+    $('p').addClass('indent');
 });
 </script>
 
