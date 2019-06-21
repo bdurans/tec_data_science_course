@@ -138,7 +138,8 @@ norma_ab <- norm(ab, type="2")
 norma_bc <- norm(bc, type="2")
 norma_ca <- norm(ca, type="2")
 
-norma_ab + norma_bc + norma_ca
+perimetro <- norma_ab + norma_bc + norma_ca
+perimetro
 ```
 
 
@@ -272,7 +273,7 @@ La última matriz no tiene inversa puesto que el determinante es cero, es decir 
 
 
 Que relación existe entre las matrices que poseen inversas y el valor de su determinante? Sug: revisar la teoría vista en clase.
-Cuando una matriz posee inversa, se puede asumir que su determinante es mayor a cero.
+</br>Cuando una matriz posee inversa, se puede asumir que su determinante es mayor a cero.
 
 
 </br>
