@@ -35,7 +35,11 @@ area2 <- Norm(pracma::cross(pq,pr))/2
 area2
 ```
 
+<<<<<<< HEAD
+# Proyecciones:
+=======
 # Proyecciones: 
+>>>>>>> clase 5
 
 ```{r}
 u <- c(2,3,1)
@@ -82,6 +86,12 @@ m[,3]
 ```{r}
 s <- matrix(c(2, 4, 6, 18, 4, 5, 6, 24, 3, 1, -2, 4), 3, 4, byrow=T)
 s
+<<<<<<< HEAD
+#
+rref(s)
+```
+=======
 # 
 rref(s)
 ```
+>>>>>>> clase 5
