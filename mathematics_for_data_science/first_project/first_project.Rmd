@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_notebook: default
+  pdf_document: default
 ---
 
 ```{r, echo = FALSE, message = FALSE}
@@ -16,7 +18,7 @@ library(MASS)
 m <- matrix(c(4, 2, 3, 3.5,
               1, 1, 1, 1), 2, 4, byrow=T)
 
-m
+
 
 fractions(rref(m))
 ```

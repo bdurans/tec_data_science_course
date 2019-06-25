@@ -1776,14 +1776,19 @@ $(document).ready(function () {
 </ol>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubSA8LSBtYXRyaXgoYyg0LCAyLCAzLCAzLjUsXG4gICAgICAgICAgICAgIDEsIDEsIDEsIDEpLCAyLCA0LCBieXJvdz1UKVxuXG5tXG5cbmZyYWN0aW9ucyhycmVmKG0pKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubSA8LSBtYXRyaXgoYyg0LCAyLCAzLCAzLjUsXG4gICAgICAgICAgICAgIDEsIDEsIDEsIDEpLCAyLCA0LCBieXJvdz1UKVxuXG5cblxuZnJhY3Rpb25zKHJyZWYobSkpXG5gYGAifQ== -->
 <pre class="r"><code>m &lt;- matrix(c(4, 2, 3, 3.5,
               1, 1, 1, 1), 2, 4, byrow=T)
 
-m
+
 
 fractions(rref(m))</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdXG5bMSxdICAgMSAgICAwICAxLzIgIDMvNCBcblsyLF0gICAwICAgIDEgIDEvMiAgMS80IFxuIn0= -->
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]   1    0  1/2  3/4 
+[2,]   0    1  1/2  1/4 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <ol start="2" style="list-style-type: decimal">
@@ -1792,9 +1797,10 @@ fractions(rref(m))</code></pre>
 <p>A =&gt; 800 + 50</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5kaW1uYW1lcyA9IGxpc3QoYyhcIkFcIiwgXCJCXCIsIFwiQ1wiLCBcIkRcIiwgXCJFXCIsIFwiRlwiKSwgYyhcIngxXCIsIFwieDJcIiwgXCJ4M1wiLCBcIng0XCIsIFwieDVcIiwgXCJ4NlwiLCBcIng3XCIsIFwiVlNcIikpXG5cbnN0cmVldHMgPC0gbWF0cml4KGMoMSwgIDAsICAwLCAgMCwgIDAsICAwLCAgMSwgIDEzMDAsXG4gICAgICAgICAgICAgICAgICAgIDEsIC0xLCAgMCwgIDAsICAwLCAgMSwgIDAsICAyMDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAxLCAgMCwgIDAsIC0xLCAgMCwgIDAsICAyMDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAwLCAgMCwgLTEsICAxLCAgMCwgIDAsICA0MDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAwLCAgMSwgLTEsICAwLCAgMSwgIDAsICAxMDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAwLCAgMSwgIDAsICAwLCAgMCwgIDEsICA2MDApLCA2LCA4LCBieXJvdz1ULCBkaW1uYW1lcz1kaW1uYW1lcylcblxucnJlZihzdHJlZXRzKVxuYGBgIn0= -->
-<pre class="r"><code>
-dimnames = list(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;), c(&quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x5&quot;, &quot;x6&quot;, &quot;x7&quot;, &quot;VS&quot;))
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuXG5kaW1uYW1lcyA9IGxpc3QoYyhcXEFcXCwgXFxCXFwsIFxcQ1xcLCBcXERcXCwgXFxFXFwsIFxcRlxcKSwgYyhcXHgxXFwsIFxceDJcXCwgXFx4M1xcLCBcXHg0XFwsIFxceDVcXCwgXFx4NlxcLCBcXHg3XFwsIFxcVlNcXCkpXG5cbnN0cmVldHMgPC0gbWF0cml4KGMoMSwgIDAsICAwLCAgMCwgIDAsICAwLCAgMSwgIDEzMDAsXG4gICAgICAgICAgICAgICAgICAgIDEsIC0xLCAgMCwgIDAsICAwLCAgMSwgIDAsICAyMDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAxLCAgMCwgIDAsIC0xLCAgMCwgIDAsICAyMDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAwLCAgMCwgLTEsICAxLCAgMCwgIDAsICA0MDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAwLCAgMSwgLTEsICAwLCAgMSwgIDAsICAxMDAsXG4gICAgICAgICAgICAgICAgICAgIDAsICAwLCAgMSwgIDAsICAwLCAgMCwgIDEsICA2MDApLCA2LCA4LCBieXJvdz1ULCBkaW1uYW1lcz1kaW1uYW1lcylcblxucnJlZihzdHJlZXRzKVxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+
+dimnames = list(c(\A\, \B\, \C\, \D\, \E\, \F\), c(\x1\, \x2\, \x3\, \x4\, \x5\, \x6\, \x7\, \VS\))
 
 streets &lt;- matrix(c(1,  0,  0,  0,  0,  0,  1,  1300,
                     1, -1,  0,  0,  0,  1,  0,  200,
@@ -1804,19 +1810,16 @@ streets &lt;- matrix(c(1,  0,  0,  0,  0,  0,  1,  1300,
                     0,  0,  1,  0,  0,  0,  1,  600), 6, 8, byrow=T, dimnames=dimnames)
 
 rref(streets)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICB4MSB4MiB4MyB4NCB4NSB4NiB4NyAgIFZTXG5BICAxICAwICAwICAwICAwICAwICAxIDEzMDBcbkIgIDAgIDEgIDAgIDAgIDAgLTEgIDEgMTEwMFxuQyAgMCAgMCAgMSAgMCAgMCAgMCAgMSAgNjAwXG5EICAwICAwICAwICAxICAwIC0xICAxICA1MDBcbkUgIDAgIDAgIDAgIDAgIDEgLTEgIDEgIDkwMFxuRiAgMCAgMCAgMCAgMCAgMCAgMCAgMCAgICAwXG4ifQ== -->
-<pre><code>  x1 x2 x3 x4 x5 x6 x7   VS
-A  1  0  0  0  0  0  1 1300
-B  0  1  0  0  0 -1  1 1100
-C  0  0  1  0  0  0  1  600
-D  0  0  0  1  0 -1  1  500
-E  0  0  0  0  1 -1  1  900
-F  0  0  0  0  0  0  0    0</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-output-begin eyJkYXRhIjoiICB4MSB4MiB4MyB4NCB4NSB4NiB4NyAgIFZTXG5BICAxICAwICAwICAwICAwICAwICAxIDEzMDBcbkIgIDAgIDEgIDAgIDAgIDAgLTEgIDEgMTEwMFxuQyAgMCAgMCAgMSAgMCAgMCAgMCAgMSAgNjAwXG5EICAwICAwICAwICAxICAwIC0xICAxICA1MDBcbkUgIDAgIDAgIDAgIDAgIDEgLTEgIDEgIDkwMFxuRiAgMCAgMCAgMCAgMCAgMCAgMCAgMCAgICAwXG4ifQ== --&gt;
+</code></pre>
+<p>x1 x2 x3 x4 x5 x6 x7 VS A 1 0 0 0 0 0 1 1300 B 0 1 0 0 0 -1 1 1100 C 0 0 1 0 0 0 1 600 D 0 0 0 1 0 -1 1 500 E 0 0 0 0 1 -1 1 900 F 0 0 0 0 0 0 0 0 ```</p>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgZWNobyA9IEZBTFNFLCBtZXNzYWdlID0gRkFMU0V9DQpsaWJyYXJ5KHByYWNtYSkNCmxpYnJhcnkobW9zYWljKQ0KbGlicmFyeShNQVNTKQ0KYGBgDQoNCg0KMS4NCg0KYGBge3J9DQptIDwtIG1hdHJpeChjKDQsIDIsIDMsIDMuNSwNCiAgICAgICAgICAgICAgMSwgMSwgMSwgMSksIDIsIDQsIGJ5cm93PVQpDQoNCm0NCg0KZnJhY3Rpb25zKHJyZWYobSkpDQpgYGANCg0KDQoyLg0KDQpBID0+IDgwMCArIDUwDQoNCmBgYHtyfQ0KDQpkaW1uYW1lcyA9IGxpc3QoYygiQSIsICJCIiwgIkMiLCAiRCIsICJFIiwgIkYiKSwgYygieDEiLCAieDIiLCAieDMiLCAieDQiLCAieDUiLCAieDYiLCAieDciLCAiVlMiKSkNCg0Kc3RyZWV0cyA8LSBtYXRyaXgoYygxLCAgMCwgIDAsICAwLCAgMCwgIDAsICAxLCAgMTMwMCwNCiAgICAgICAgICAgICAgICAgICAgMSwgLTEsICAwLCAgMCwgIDAsICAxLCAgMCwgIDIwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDEsICAwLCAgMCwgLTEsICAwLCAgMCwgIDIwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDAsICAwLCAtMSwgIDEsICAwLCAgMCwgIDQwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDAsICAxLCAtMSwgIDAsICAxLCAgMCwgIDEwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDAsICAxLCAgMCwgIDAsICAwLCAgMSwgIDYwMCksIDYsIDgsIGJ5cm93PVQsIGRpbW5hbWVzPWRpbW5hbWVzKQ0KDQpycmVmKHN0cmVldHMpDQoNCmBgYA==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6DQogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQNCiAgcGRmX2RvY3VtZW50OiBkZWZhdWx0DQotLS0NCg0KYGBge3IsIGVjaG8gPSBGQUxTRSwgbWVzc2FnZSA9IEZBTFNFfQ0KbGlicmFyeShwcmFjbWEpDQpsaWJyYXJ5KG1vc2FpYykNCmxpYnJhcnkoTUFTUykNCmBgYA0KDQoNCjEuDQoNCmBgYHtyfQ0KbSA8LSBtYXRyaXgoYyg0LCAyLCAzLCAzLjUsDQogICAgICAgICAgICAgIDEsIDEsIDEsIDEpLCAyLCA0LCBieXJvdz1UKQ0KDQoNCg0KZnJhY3Rpb25zKHJyZWYobSkpDQpgYGANCg0KDQoyLg0KDQpBID0+IDgwMCArIDUwDQoNCmBgYHtyfQ0KDQpkaW1uYW1lcyA9IGxpc3QoYygiQSIsICJCIiwgIkMiLCAiRCIsICJFIiwgIkYiKSwgYygieDEiLCAieDIiLCAieDMiLCAieDQiLCAieDUiLCAieDYiLCAieDciLCAiVlMiKSkNCg0Kc3RyZWV0cyA8LSBtYXRyaXgoYygxLCAgMCwgIDAsICAwLCAgMCwgIDAsICAxLCAgMTMwMCwNCiAgICAgICAgICAgICAgICAgICAgMSwgLTEsICAwLCAgMCwgIDAsICAxLCAgMCwgIDIwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDEsICAwLCAgMCwgLTEsICAwLCAgMCwgIDIwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDAsICAwLCAtMSwgIDEsICAwLCAgMCwgIDQwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDAsICAxLCAtMSwgIDAsICAxLCAgMCwgIDEwMCwNCiAgICAgICAgICAgICAgICAgICAgMCwgIDAsICAxLCAgMCwgIDAsICAwLCAgMSwgIDYwMCksIDYsIDgsIGJ5cm93PVQsIGRpbW5hbWVzPWRpbW5hbWVzKQ0KDQpycmVmKHN0cmVldHMpDQoNCmBgYA==</div>
 
 
 
