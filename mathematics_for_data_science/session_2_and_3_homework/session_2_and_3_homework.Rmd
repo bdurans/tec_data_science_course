@@ -2,11 +2,7 @@
 output: html_notebook
 ---
 
-```{css, echo = FALSE}
-.indent {
- margin-left: 30px;
-}
-```
+
 
 ### Brian Durán
 ![](../logo_ciencia_de_datos.png)
